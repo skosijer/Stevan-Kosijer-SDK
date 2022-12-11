@@ -13,5 +13,7 @@ public class Filter {
 
     private String field;
 
+    private String value;
+
     private FilterType filterType;
 }

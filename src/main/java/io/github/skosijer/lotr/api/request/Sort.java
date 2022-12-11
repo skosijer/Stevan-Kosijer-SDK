@@ -13,5 +13,5 @@ public class Sort {
 
     private String field;
 
-    private SortType sortType;
+    private SortOrder sortOrder;
 }

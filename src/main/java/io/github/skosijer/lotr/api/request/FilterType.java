@@ -10,10 +10,13 @@ public enum FilterType {
     NOT_MATCH("!="),
     INCLUDE("="),
     EXCLUDE("!="),
-    EXISTS(""),
-    NOT_EXISTS("!"),
+    EXIST(""),
+    NOT_EXIST("!"),
     MATCH_REGEX("="),
-    NOT_MATCH_REGEX("!=");
+    NOT_MATCH_REGEX("!="),
+    GREATER_THAN(">"),
+    LESSER_THAN("<"),
+    EQUALS("=");
 
     private final String operation;
 }

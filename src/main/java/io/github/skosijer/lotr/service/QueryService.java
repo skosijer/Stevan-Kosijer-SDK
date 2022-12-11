@@ -5,7 +5,7 @@ import static java.util.Objects.nonNull;
 import io.github.skosijer.lotr.api.request.Pagination;
 import io.github.skosijer.lotr.api.request.Query;
 import io.github.skosijer.lotr.api.request.Sort;
-import io.github.skosijer.lotr.api.request.SortType;
+import io.github.skosijer.lotr.api.request.SortOrder;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -30,10 +30,10 @@ public class QueryService {
     private static void appendSort(StringBuilder queryParams, Sort sort) {
         if (nonNull(sort) && nonNull(sort.getField())) {
             queryParams.append("sort=").append(sort.getField());
-            if (nonNull(sort.getSortType())) {
-                queryParams.append(sort.getSortType().getOperation()).append("&");
+            if (nonNull(sort.getSortOrder())) {
+                queryParams.append(sort.getSortOrder().getOperation()).append("&");
             } else {
-                queryParams.append(SortType.ASC).append("&");
+                queryParams.append(SortOrder.ASC).append("&");
             }
         }
     }

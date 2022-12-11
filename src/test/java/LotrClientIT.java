@@ -4,7 +4,7 @@ import io.github.skosijer.lotr.LotrClient;
 import io.github.skosijer.lotr.api.request.Pagination;
 import io.github.skosijer.lotr.api.request.Query;
 import io.github.skosijer.lotr.api.request.Sort;
-import io.github.skosijer.lotr.api.request.SortType;
+import io.github.skosijer.lotr.api.request.SortOrder;
 import io.github.skosijer.lotr.api.response.Book;
 import io.github.skosijer.lotr.api.response.BookPage;
 import java.util.List;
@@ -108,7 +108,7 @@ class LotrClientIT {
         var actual = lotrClient.books(Query.builder()
                 .sort(Sort.builder()
                     .field("name")
-                    .sortType(SortType.ASC)
+                    .sortOrder(SortOrder.ASC)
                     .build())
                 .build())
             .get();

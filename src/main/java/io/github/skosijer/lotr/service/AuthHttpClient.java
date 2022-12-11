@@ -5,13 +5,20 @@ import static io.github.skosijer.lotr.util.ApiConstants.BEARER;
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
 import java.net.http.HttpClient;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class AuthHttpClient {
 
     private static HttpClient instance;
 
-    private AuthHttpClient() {
-        // Private constructor to prevent multiple instances
+    // Single instance to provide better performance as generally advised
+    public static synchronized HttpClient getInstance() {
+        if (instance == null) {
+            instance = HttpClient.newHttpClient();
+        }
+        return instance;
     }
 
     public static synchronized void initialize(String bearerToken) {
@@ -20,13 +27,6 @@ public class AuthHttpClient {
                 .authenticator(createBasicAuthenticator(bearerToken))
                 .build();
         }
-    }
-
-    public static synchronized HttpClient getInstance() {
-        if (instance == null) {
-            instance = HttpClient.newHttpClient();
-        }
-        return instance;
     }
 
     private static Authenticator createBasicAuthenticator(String bearerToken) {
