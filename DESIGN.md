@@ -55,7 +55,7 @@ Service layer used for combining before mentioned clients in order to provide th
 APIs available per resource.
 Services are used for defining the wanted response types as well as resource names.
 
-### QueryService
+### QueryUtil
 
 Provides all the necessary logic for building query parameters for the following classes
 
@@ -79,10 +79,11 @@ Provides all the necessary logic for building query parameters for the following
 - Thoroughly test the API and provide defensive programming where needed to ensure maximum stability
   of the SDK
 - Apply better exception handling
-- Apply robust input validations
+- Apply more robust input validations (for filters and other inputs)
 - Extract all the possible field names as enum values for `Sort` and `Filter` field values
 - Apply performance tests and stress test the SDK to discover any possible leaks
 - Increase test coverage (unit and integration tests)
 - Revise and extend class/method documentation
-- Revise possible extraction of interfaces
 - Collect feedback from the end users about the usability of the current SDK exposed methods
+- Add automatically generated CHANGELOG.md file with semantic versioning following git
+  commits (https://mokkapps.de/blog/how-to-automatically-generate-a-helpful-changelog-from-your-git-commit-messages/)

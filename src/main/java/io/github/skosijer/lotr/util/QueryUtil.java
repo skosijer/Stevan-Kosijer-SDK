@@ -2,10 +2,12 @@ package io.github.skosijer.lotr.util;
 
 import static java.util.Objects.nonNull;
 
+import io.github.skosijer.lotr.api.request.Filter;
 import io.github.skosijer.lotr.api.request.Pagination;
 import io.github.skosijer.lotr.api.request.Query;
 import io.github.skosijer.lotr.api.request.Sort;
 import io.github.skosijer.lotr.api.request.SortOrder;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -21,6 +23,7 @@ public class QueryUtil {
 
         appendPagination(queryParams, query.getPagination());
         appendSort(queryParams, query.getSort());
+        appendFilters(queryParams, query.getFilters());
 
         return queryParams.toString();
     }
@@ -53,6 +56,35 @@ public class QueryUtil {
             } else {
                 queryParams.append("limit=").append(DEFAULT_PAGE_LIMIT).append("&");
             }
+        }
+    }
+
+    // Appends the filter parameters if they are present.
+    //      e.g. name=MovieName
+    // TODO: @skos This logic should be improved and better validated
+    private static void appendFilters(StringBuilder queryParams, List<Filter> filters) {
+        if (nonNull(filters) && !filters.isEmpty()) {
+            filters.forEach(filter -> {
+                switch (filter.getFilterType()) {
+                    case EXIST:
+                    case NOT_EXIST:
+                        if (nonNull(filter.getField())) {
+                            queryParams
+                                .append(filter.getFilterType().getOperation())
+                                .append(filter.getField())
+                                .append("&");
+                        }
+                        break;
+                    default:
+                        if (nonNull(filter.getField()) && nonNull(filter.getFilterType()) && nonNull(
+                            filter.getValue())) {
+                            queryParams.append(filter.getField())
+                                .append(filter.getFilterType().getOperation())
+                                .append(filter.getValue())
+                                .append("&");
+                        }
+                }
+            });
         }
     }
 }

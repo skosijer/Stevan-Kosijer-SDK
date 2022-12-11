@@ -54,7 +54,7 @@ The list APIs supports pagination, sorting and filtering (visit the [examples](#
 All methods are async and non-blocking, they return <code>CompletableFuture</code>.
 Feel fee to use it in any manner that suits you.
 
-### Additional methods
+### Additional endpoints
 
 The following additional methods are supported by the SDK.
 
@@ -127,24 +127,11 @@ lotrClient.books();
 Get paginated, sorted or filtered books:
 
 ```
-lotrClient.books(
-    Query.builder()
-        .pagination(Pagination.builder()
-            .page(1)
-            .limit(10)
-            .offset(0)
-            .build())
-        .sort(Sort.builder()
-            .field("name")
-            .sortOrder(SortOrder.ASC)
-            .build())
-        .filters(List.of(
-            Filter.builder()
-                .field("name")
-                .filterType(FilterType.MATCH)
-                .value("The Return Of The King")
-                .build()
-        ))
-        .build()
-);
+lotrClient.books(Query.builder()
+        .filters(List.of(Filter.builder()
+            .field("_id")
+            .filterType(FilterType.MATCH)
+            .value("5cf58077b53e011a64671583")
+            .build()))
+        .build());
 ```
