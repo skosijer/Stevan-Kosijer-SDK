@@ -110,8 +110,8 @@ Possible `FilterType` operations are:
 
 ## Examples
 
-Get book by book id and a
-`CompletableFuture<BookPage>` is always returned.
+Get book by book id.
+Important note: `CompletableFuture<BookPage>` is always returned.
 To await the `BookPage` use `.get()` method.
 
 ```
