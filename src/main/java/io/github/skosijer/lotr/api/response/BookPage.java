@@ -1,6 +1,6 @@
 package io.github.skosijer.lotr.api.response;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,10 +10,17 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookResponse {
+public class BookPage {
 
-    @JsonProperty(value = "_id")
-    private String id;
+    private List<Book> docs;
 
-    private String name;
+    private int total;
+
+    private int limit;
+
+    private int page;
+
+    private int pages;
+
+    private int offset;
 }
