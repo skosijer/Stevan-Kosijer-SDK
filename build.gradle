@@ -1,0 +1,93 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+}
+
+group 'io.github.skosijer'
+version '1.0.0-SNAPSHOT'
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications{
+
+        mavenJava(MavenPublication){
+
+            groupId = 'io.github.skosijer'
+            artifactId = 'lotr'
+            version = '1.0.0-SNAPSHOT'
+            from components.java
+
+            pom {
+                name = 'Lotr API SDK'
+                description = 'Lotr API SDK is a project making Lord of the Rings API accessible to developers'
+                url = 'https://github.com/skosijer/Stevan-Kosijer-SDK'
+                inceptionYear = '2022'
+
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://opensource.org/licenses/MIT'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'skos'
+                        name = 'Stevan Kosijer'
+                        email = 'stkosijer@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git:github.com/skosijer/Stevan-Kosijer-SDK.git'
+                    developerConnection = 'scm:git:ssh://github.com/skosijer/Stevan-Kosijer-SDK.git'
+                    url = 'https://github.com/skosijer/Stevan-Kosijer-SDK'
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "OSSRH"
+            url = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+            credentials {
+                username = project.properties["ossrhUsername"]
+                password = project.properties["ossrhPassword"]
+            }
+        }
+    }
+}
+
+signing {
+    useGpgCmd()
+    sign publishing.publications.mavenJava
+}
+
+
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
