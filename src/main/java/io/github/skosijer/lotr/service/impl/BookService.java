@@ -1,13 +1,17 @@
-package io.github.skosijer.lotr.service;
+package io.github.skosijer.lotr.service.impl;
 
 import io.github.skosijer.lotr.api.request.Query;
 import io.github.skosijer.lotr.api.response.BookPage;
 import io.github.skosijer.lotr.api.response.ChapterPage;
+import io.github.skosijer.lotr.client.GetAllByIdClient;
+import io.github.skosijer.lotr.client.GetAllClient;
+import io.github.skosijer.lotr.client.GetByIdClient;
+import io.github.skosijer.lotr.service.IBookService;
 import java.util.concurrent.CompletableFuture;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class BookService {
+public class BookService implements IBookService {
 
     private static final String BOOK_RESOURCE = "book";
 

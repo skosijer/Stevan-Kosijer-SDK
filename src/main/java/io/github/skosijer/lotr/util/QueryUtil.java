@@ -1,4 +1,4 @@
-package io.github.skosijer.lotr.service;
+package io.github.skosijer.lotr.util;
 
 import static java.util.Objects.nonNull;
 
@@ -10,7 +10,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class QueryService {
+public class QueryUtil {
 
     private static final String DEFAULT_PAGE_LIMIT = "10";
 

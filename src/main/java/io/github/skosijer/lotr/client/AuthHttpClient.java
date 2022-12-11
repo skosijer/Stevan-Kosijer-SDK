@@ -1,4 +1,4 @@
-package io.github.skosijer.lotr.service;
+package io.github.skosijer.lotr.client;
 
 import static io.github.skosijer.lotr.util.ApiConstants.BEARER;
 
