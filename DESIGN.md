@@ -84,3 +84,4 @@ Provides all the necessary logic for building query parameters for the following
 - Collect feedback from the end users about the usability of the current SDK exposed methods
 - Add automatically generated CHANGELOG.md file with semantic versioning following git
   commits (https://mokkapps.de/blog/how-to-automatically-generate-a-helpful-changelog-from-your-git-commit-messages/)
+- Check how to resolve this vulnerability https://sbom.lift.sonatype.com/report/T1-a0368c8f29fdaa555824-40f18103e5d6-1670813689-a5da9c2d31054ab9a0d098b51e170c0a
