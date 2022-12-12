@@ -1,6 +1,6 @@
 package io.github.skosijer.lotr.api.response;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,12 +10,17 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Chapter {
+public class QuotePage {
 
-    @JsonProperty(value = "_id")
-    private String id;
+    private List<Quote> docs;
 
-    private String chapterName;
+    private int total;
 
-    private String book;
+    private int limit;
+
+    private int page;
+
+    private int pages;
+
+    private int offset;
 }

@@ -12,15 +12,12 @@
 
 ## Proposed Design
 
-### AuthHttpClient
+### HttpClient
 
 We will use HttpClient with asynchronous API in order to achieve best performance by leveraging the
 non-blocking API model.
 The HttpClient can also offer many other features out of the box, like using HTTP/2 protocol,
 caching or limiting the request timeout. This makes it a great candidate for future extensibility.
-
-The HttpClient is used as a singleton, as that is the general advice from the public having
-performance in mind.
 
 ### LotrClient
 

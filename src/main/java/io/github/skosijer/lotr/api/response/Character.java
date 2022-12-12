@@ -10,12 +10,28 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Chapter {
+public class Character {
 
     @JsonProperty(value = "_id")
     private String id;
 
-    private String chapterName;
+    private String height;
 
-    private String book;
+    private String race;
+
+    private String gender;
+
+    private String birth;
+
+    private String spouse;
+
+    private String death;
+
+    private String realm;
+
+    private String hair;
+
+    private String name;
+
+    private String wikiUrl;
 }

@@ -1,10 +1,9 @@
 package io.github.skosijer.lotr.client;
 
+import static io.github.skosijer.lotr.client.HttpClientWithToken.createRequest;
 import static io.github.skosijer.lotr.util.ApiConstants.LOTR_API_URL;
 import static io.github.skosijer.lotr.util.ResponseObjectMapper.objectMapper;
 
-import java.net.URI;
-import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.concurrent.CompletableFuture;
 import lombok.RequiredArgsConstructor;
@@ -29,16 +28,9 @@ public class GetByIdClient<T> {
 
         var request = createRequest(uriTemplate);
 
-        return AuthHttpClient.getInstance()
+        return HttpClientWithToken.httpClient
             .sendAsync(request, HttpResponse.BodyHandlers.ofString())
             .thenApply(HttpResponse::body)
             .thenApply(response -> objectMapper().readContent(response, resourceClass));
-    }
-
-    private HttpRequest createRequest(String uri) {
-        return HttpRequest.newBuilder()
-            .uri(URI.create(uri))
-            .GET()
-            .build();
     }
 }

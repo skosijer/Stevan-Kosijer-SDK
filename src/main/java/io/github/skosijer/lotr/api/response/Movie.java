@@ -10,12 +10,22 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Chapter {
+public class Movie {
 
     @JsonProperty(value = "_id")
     private String id;
 
-    private String chapterName;
+    private String name;
 
-    private String book;
+    private double runtimeInMinutes;
+
+    private double budgetInMillions;
+
+    private double boxOfficeRevenueInMillions;
+
+    private double academyAwardNominations;
+
+    private double academyAwardWins;
+
+    private double rottenTomatoesScore;
 }

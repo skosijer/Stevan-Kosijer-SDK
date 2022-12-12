@@ -1,13 +1,12 @@
 package io.github.skosijer.lotr.client;
 
+import static io.github.skosijer.lotr.client.HttpClientWithToken.createRequest;
 import static io.github.skosijer.lotr.util.ApiConstants.LOTR_API_URL;
 import static io.github.skosijer.lotr.util.ApiConstants.QUERY_PARAMETERS_SEPARATOR;
 import static io.github.skosijer.lotr.util.ResponseObjectMapper.objectMapper;
 
 import io.github.skosijer.lotr.api.request.Query;
 import io.github.skosijer.lotr.util.QueryUtil;
-import java.net.URI;
-import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.concurrent.CompletableFuture;
 import lombok.RequiredArgsConstructor;
@@ -37,12 +36,9 @@ public class GetAllByIdClient<T> {
             uriBuilder.append(QueryUtil.buildQueryParams(query));
         }
 
-        var request = HttpRequest.newBuilder()
-            .uri(URI.create(uriBuilder.toString()))
-            .GET()
-            .build();
+        var request = createRequest(uriBuilder.toString());
 
-        return AuthHttpClient.getInstance()
+        return HttpClientWithToken.httpClient
             .sendAsync(request, HttpResponse.BodyHandlers.ofString())
             .thenApply(HttpResponse::body)
             .thenApply(response -> objectMapper().readContent(response, resourceClass));

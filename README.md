@@ -40,14 +40,10 @@ Your <code>LotrClient</code> is now configured and ready for usage.
 Entities that are supported for the current version are
 
 * Books
-
-[//]: # (* Chapters)
-
-[//]: # (* Characters)
-
-[//]: # (* Movies)
-
-[//]: # (* Quotes)
+* Movies
+* Characters
+* Chapters
+* Quotes
 
 All entities support getting by id or list.
 The list APIs supports pagination, sorting and filtering (visit the [examples](#examples)).
