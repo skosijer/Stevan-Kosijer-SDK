@@ -7,17 +7,17 @@ Repository for Lotr API SDK implementation
 ### Add dependency to your project:
 
 - for Maven users:
-    - ```
-      <dependency>
-        <groupId>io.github.skosijer</groupId>
-        <artifactId>lotr</artifactId>
-        <version>1.0.0</version>
-      </dependency>
-      ```
+```
+<dependency>
+  <groupId>io.github.skosijer</groupId>
+  <artifactId>lotr</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
 - for Gradle users:
-    - ```
-        implementation 'io.github.skosijer:lotr:1.0.0'
-      ```
+```
+implementation 'io.github.skosijer:lotr:1.0.0'
+```
 
 ## Register for Lotr API token:
 
@@ -48,7 +48,7 @@ Entities that are supported for the current version are
 All entities support getting by id or list.
 The list APIs supports pagination, sorting and filtering (visit the [examples](#examples)).
 All methods are async and non-blocking, they return <code>CompletableFuture</code>.
-Feel fee to use it in any manner that suits you.
+Feel free to use it in any manner that suits you.
 
 ### Additional endpoints
 
@@ -58,8 +58,7 @@ The following additional methods are supported by the SDK.
 * Quotes by movie - `movieQuotes(String movieId, Query query)`
 * Quotes by character - `characterQuotes(String characterId, Query query)`
 
-Mind that the `query` parameter is not mandatory, so feel free to pass `null` if you don't need the
-query.
+Mind that the `query` parameter is not mandatory, pass `null` if you don't need it.
 
 ## Mind the rate limit
 
@@ -70,24 +69,24 @@ The Lotr API enforces a rate limit of 100 requests per 10 min so please use with
 Here is a completely populated query object, feel free to use it and explore the Lotr API even more:
 
 ```
-        Query.builder()
-            .pagination(Pagination.builder()
-                .page(2)
-                .limit(10)
-                .offset(3)
-                .build())
-            .sort(Sort.builder()
-                .field("fieldName")
-                .sortOrder(SortOrder.ASC)
-                .build())
-            .filters(List.of(
-                Filter.builder()
-                    .field("fieldName")
-                    .filterType(FilterType.MATCH)
-                    .value("someValue")
-                    .build()
-            ))
-            .build();
+Query.builder()
+  .pagination(Pagination.builder()
+      .page(2)
+      .limit(10)
+      .offset(3)
+      .build())
+  .sort(Sort.builder()
+      .field("fieldName")
+      .sortOrder(SortOrder.ASC)
+      .build())
+  .filters(List.of(
+      Filter.builder()
+          .field("fieldName")
+          .filterType(FilterType.MATCH)
+          .value("someValue")
+          .build()
+  ))
+  .build();
 ```
 
 Possible `FilterType` operations are:
@@ -106,13 +105,13 @@ Possible `FilterType` operations are:
 
 ## Examples
 
-Get book by book id.
-Important note: `CompletableFuture<BookPage>` is always returned.
-To await the `BookPage` use `.get()` method.
+Get book by book id. <br/>
 
 ```
 lotrClient.book("5cf5805fb53e011a64671582");
 ```
+Important note: `CompletableFuture<BookPage>` is returned.
+To await the `BookPage` use `.get()` method.
 
 Get All books:
 

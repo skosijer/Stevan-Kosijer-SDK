@@ -10,7 +10,7 @@ repositories {
 }
 
 group 'io.github.skosijer'
-version '1.0.0-SNAPSHOT'
+version '1.0.0'
 
 dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.24'
@@ -37,7 +37,7 @@ publishing {
 
             groupId = 'io.github.skosijer'
             artifactId = 'lotr'
-            version = '1.0.0-SNAPSHOT'
+            version = '1.0.0'
             from components.java
 
             pom {
@@ -71,6 +71,7 @@ publishing {
     repositories {
         maven {
             name = "OSSRH"
+            // Release repo: https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/       
             url = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
             credentials {
                 username = project.properties["ossrhUsername"]
