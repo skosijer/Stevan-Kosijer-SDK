@@ -3,18 +3,24 @@ package io.github.skosijer.lotr.util;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.concurrent.CompletionException;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
-public class ResponseObjectMapper extends ObjectMapper {
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public class ResponseObjectMapper {
 
-    // It is not advised for multithreaded runtime like java to reuse singleton ObjectMapper
-    // Possible improvement of this solution would be to use an ObjectMapper fixed pool
-    public static ResponseObjectMapper objectMapper() {
-        return new ResponseObjectMapper();
+    public static ObjectMapper instance;
+
+    public static ObjectMapper getInstance() {
+        if (instance == null) {
+            instance = new ObjectMapper();
+        }
+        return instance;
     }
 
-    public <T> T readContent(String content, Class<T> contentClass) {
+    public static <T> T readResponse(String response, Class<T> responseClass) {
         try {
-            return this.readValue(content, contentClass);
+            return getInstance().readValue(response, responseClass);
         } catch (IOException ioe) {
             throw new CompletionException(ioe);
         }

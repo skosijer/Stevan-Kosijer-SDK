@@ -2,7 +2,7 @@ package io.github.skosijer.lotr.client;
 
 import static io.github.skosijer.lotr.client.HttpClientWithToken.createRequest;
 import static io.github.skosijer.lotr.util.ApiConstants.LOTR_API_URL;
-import static io.github.skosijer.lotr.util.ResponseObjectMapper.objectMapper;
+import static io.github.skosijer.lotr.util.ResponseObjectMapper.readResponse;
 
 import java.net.http.HttpResponse;
 import java.util.concurrent.CompletableFuture;
@@ -31,6 +31,6 @@ public class GetByIdClient<T> {
         return HttpClientWithToken.httpClient
             .sendAsync(request, HttpResponse.BodyHandlers.ofString())
             .thenApply(HttpResponse::body)
-            .thenApply(response -> objectMapper().readContent(response, resourceClass));
+            .thenApply(response -> readResponse(response, resourceClass));
     }
 }

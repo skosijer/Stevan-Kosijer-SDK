@@ -3,12 +3,15 @@ package io.github.skosijer.lotr.client;
 import static io.github.skosijer.lotr.client.HttpClientWithToken.createRequest;
 import static io.github.skosijer.lotr.util.ApiConstants.LOTR_API_URL;
 import static io.github.skosijer.lotr.util.ApiConstants.QUERY_PARAMETERS_SEPARATOR;
-import static io.github.skosijer.lotr.util.ResponseObjectMapper.objectMapper;
+import static io.github.skosijer.lotr.util.ResponseObjectMapper.readResponse;
 
 import io.github.skosijer.lotr.api.request.Query;
 import io.github.skosijer.lotr.util.QueryUtil;
+import io.github.skosijer.lotr.util.ResponseObjectMapper;
+import java.io.IOException;
 import java.net.http.HttpResponse;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -41,6 +44,6 @@ public class GetAllByIdClient<T> {
         return HttpClientWithToken.httpClient
             .sendAsync(request, HttpResponse.BodyHandlers.ofString())
             .thenApply(HttpResponse::body)
-            .thenApply(response -> objectMapper().readContent(response, resourceClass));
+            .thenApply(response -> readResponse(response, resourceClass));
     }
 }
